@@ -2,6 +2,6 @@ import express from "express";
 import { signin } from "../controllers/authControllers.js";
 const router = express.Router();
 
-router.get("/", signin);
+router.route("/").get(signin);
 
-export default router
+export default router;
