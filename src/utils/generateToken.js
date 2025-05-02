@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
-const key = SECREAT_KEY;
+const key = process.env.SECREAT_KEY
 
 export const generateToken = (res, userid) => {
   //first create token
