@@ -6,7 +6,7 @@ dotenv.config();
 
 const key = process.env.SECREAT_KEY;
 
-export const authMiddleware = async (req, res, next) => {
+export const authenticate = async (req, res, next) => {
   if (token) {
     try {
       const token = req.cookies.jwt;
@@ -19,5 +19,17 @@ export const authMiddleware = async (req, res, next) => {
     }
   } else {
     res.status(401).json({ error: `Not authrized,  no token` });
+  }
+};
+
+export const authorizeAdmin = async (req, res, next) => {
+  try {
+    if (req.user && req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json({ error: "Not authorized as admin" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Server error during authorization" });
   }
 };

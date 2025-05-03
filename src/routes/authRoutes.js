@@ -8,7 +8,7 @@ import {
   signup,
   updateUserProfile,
 } from "../controllers/authControllers.js";
-import { authMiddleware } from "../middlewares/authMiddleware.js";
+import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // Public routes
@@ -17,8 +17,8 @@ router.post("/login", login);
 router.post("/logout", logoutUser);
 
 // Protected routes
-router.get("/", authMiddleware, getAllUsers);
-router.get("/:id", authMiddleware, getUserById);
-router.patch("/edit", authMiddleware, updateUserProfile);
-router.delete("/delete/:id", authMiddleware, deleteByUser);
+router.get("/", authenticate, authorizeAdmin, getAllUsers);
+router.get("/:id", authenticate, getUserById);
+router.patch("/edit", authenticate, updateUserProfile);
+router.delete("/delete/:id", authenticate, authorizeAdmin, deleteByUser);
 export default router;
