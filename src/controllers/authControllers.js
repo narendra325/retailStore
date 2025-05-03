@@ -85,7 +85,7 @@ export const getAllUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user._id);
 
     if (user) {
       res.status(200).json({
@@ -100,10 +100,59 @@ export const getUserById = async (req, res) => {
   }
 };
 
-export const logoutUser = async () => {
+export const logoutUser = async (req, res) => {
   res.cookie("token", "", {
     httpOnly: true,
     expires: new Date(0),
   });
   res.status(200).json({ message: "Logged out successfully" });
+};
+
+export const updateUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      res.status(404).json({ error: `User not found` });
+    }
+    if (req.body.emailid && req.body.emailid !== user.emailid) {
+      res.status(405).json({ error: `Email id updation not allowed` });
+    }
+
+    user.name = req.body.name || user.name;
+
+    if (req.body.password) {
+      const saltRounds = 10;
+      user.password = await bcrypt.hash(req.body.password, saltRounds);
+    }
+
+    const updateduser = await user.save();
+    res.status(200).json({
+      message: `User updated successfully`,
+      _id: updateduser._id,
+      name: updateduser.name,
+      admin: updateduser.isAdmin,
+    });
+  } catch (error) {
+    console.log(`error :${error.message}`);
+  }
+};
+
+export const deleteByUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (user.isAdmin) {
+      return res.status(403).json({ error: "You cannot delete admin" });
+    }
+
+    await user.deleteOne();
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.log("Error deleting user:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
