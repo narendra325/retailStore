@@ -1,0 +1,34 @@
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# local environment variables
+.env
+.env.*.local
+
+# Vite cache
+/.vite
+
+# Mac system files
+.DS_Store
+
+# log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional: Ignore coverage reports if using testing tools
+/coverage
+
+# Optional: If using TypeScript
+*.tsbuildinfo
