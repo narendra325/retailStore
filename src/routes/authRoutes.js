@@ -21,4 +21,5 @@ router.get("/", authenticate, authorizeAdmin, getAllUsers);
 router.get("/:id", authenticate, getUserById);
 router.patch("/edit", authenticate, updateUserProfile);
 router.delete("/delete/:id", authenticate, authorizeAdmin, deleteByUser);
+
 export default router;

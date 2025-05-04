@@ -4,6 +4,7 @@ import { generateToken } from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
   console.log("user signed in ");
+  console.log(req.body)
   try {
     const { name, emailid, password } = req.body;
     if (!name || !emailid || !password) {

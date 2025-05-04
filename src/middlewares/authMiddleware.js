@@ -7,11 +7,12 @@ dotenv.config();
 const key = process.env.SECREAT_KEY;
 
 export const authenticate = async (req, res, next) => {
+  const token = req.cookies.token;
+
   if (token) {
     try {
-      const token = req.cookies.jwt;
-
       const decode = jwt.verify(token, key);
+
       req.user = await User.findById(decode.id).select("-password");
       next();
     } catch (error) {
