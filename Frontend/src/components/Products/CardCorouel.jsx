@@ -94,7 +94,7 @@ const CardCorouel = () => {
       >
         {newArraivals.map((item) => (
           <SwiperSlide key={item._id}>
-            <Link to="#">
+            <Link to={`/product/${item._id}`}>
             <div className="relative p-4 bg-white shadow-md rounded-md overflow-x-hidden  ">
               <img
                 src={item.imageurl}

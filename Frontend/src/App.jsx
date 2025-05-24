@@ -5,6 +5,8 @@ import { Toaster } from 'sonner';
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import Profile from "./pages/Profile";
+import Collections from "./pages/Collections";
+import ProductCard from "./components/Products/ProductCard";
 
 
 
@@ -19,6 +21,8 @@ function App() {
         <Route path="login" element={<Login/>}></Route>
         <Route path="register" element={<Register/>}></Route>
         <Route path="profile" element={<Profile/>}></Route>
+        <Route path="/collections/:collection" element={<Collections/>}></Route>
+        <Route path="/product/:id" element={<ProductCard/>}></Route>
         
         </Route>
       </Routes>

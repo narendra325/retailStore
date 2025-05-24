@@ -25,7 +25,7 @@ const Navbar = () => {
           Yeswanth
         </Link>
         <div className=" space-x-3 font-medium text-sm hidden md:flex">
-          <Link to="#">Men</Link>
+          <Link to="/collections/all">Men</Link>
           <Link to="#">Women</Link>
           <Link to="#">Top Wear</Link>
           <Link to="#">Bottom Wear</Link>
