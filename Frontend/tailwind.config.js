@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        ancizar: ['"Ancizar Sans"', 'sans-serif'],
+        NunitoSans: ['Nunito Sans', 'sans-serif'],
       },
       keyframes: {
         wave: {

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import mensCollection from "../../assets/mens-collection.webp";
 import womenCollections from "../../assets/womens-collection.webp";
 
@@ -7,7 +8,8 @@ const GenterCollections = () => {
   return (
     <section className="py-12 px-4 lg:px-0">
       <div className="container mx-auto flex flex-col md:flex-row gap-8 ">
-        <div className="relative flex-1">
+       
+        <Link to="collections/all" className="relative flex-1">
           <img
             src={womenCollections}
             alt="women Collections"
@@ -21,8 +23,8 @@ const GenterCollections = () => {
               Explore Now
             </button>
           </div>
-        </div>
-        <div className="relative flex-1">
+        </Link>
+        <Link to="collections/all" className="relative flex-1">
           <img
             src={mensCollection}
             alt="women Collections"
@@ -36,7 +38,7 @@ const GenterCollections = () => {
               Explore Now
             </button>
           </div>
-        </div>
+        </Link>
       </div>
     </section>
   );

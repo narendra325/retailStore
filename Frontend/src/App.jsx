@@ -7,6 +7,10 @@ import { Register } from "./pages/Register";
 import Profile from "./pages/Profile";
 import Collections from "./pages/Collections";
 import ProductCard from "./components/Products/ProductCard";
+import Checkout from "./components/Cart/Checkout";
+import OrderConfirmation from "./components/Cart/OrderConfirmation";
+import OrderIdDetails from "./components/Cart/OrderIdDetails";
+import Orderdetails from "./pages/Orderdetails";
 
 
 
@@ -23,6 +27,11 @@ function App() {
         <Route path="profile" element={<Profile/>}></Route>
         <Route path="/collections/:collection" element={<Collections/>}></Route>
         <Route path="/product/:id" element={<ProductCard/>}></Route>
+        <Route path="/checkout" element={<Checkout/>}></Route>
+        <Route path="/orderconfirmation" element={<OrderConfirmation/>}></Route>
+        <Route path="/my-orders" element={<Orderdetails/>}></Route>
+        <Route path="/order/:id" element={<OrderIdDetails/>}></Route>
+
         
         </Route>
       </Routes>

@@ -1,9 +1,15 @@
 import React from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import CartItems from "../Cart/CartItems";
-
+import { useNavigate } from "react-router-dom";
 
 export const CartDrawer = ({ cartOpen, handleToggle }) => {
+  const navigate = useNavigate()
+
+  const handleCheckOut=()=>{
+    navigate("/checkout")
+    handleToggle(false)
+  }
   return (
     <div>
       <div
@@ -30,7 +36,7 @@ export const CartDrawer = ({ cartOpen, handleToggle }) => {
       
 
         <div className="p-4 sticky bottom-0 bg-white">
-          <button className="w-full rounded-lg py-4 bg-black font-semibold text-white">
+          <button onClick={handleCheckOut} className="w-full rounded-lg py-4 bg-black font-semibold text-white">
             Checkout
           </button>
           <p className=" text-sm tracking-tighter text-center text-gray-600 mt-2 ">

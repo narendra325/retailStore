@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <>
       <nav className=" container mx-auto flex justify-between px-5 py-3">
-        <Link to="#" className="font-bold">
+        <Link to="/" className="font-bold">
           Yeswanth
         </Link>
         <div className=" space-x-3 font-medium text-sm hidden md:flex">
@@ -31,7 +31,7 @@ const Navbar = () => {
           <Link to="#">Bottom Wear</Link>
         </div>
         <div className="flex items-center space-x-4">
-          <Link to="#">
+          <Link to="/profile">
             <FaRegUser />
           </Link>
           <button onClick={handleToggle} className="relative ">

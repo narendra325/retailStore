@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Orderdetails = () => {
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,8 +45,12 @@ const Orderdetails = () => {
       setOrders(mockOrders);
     }, 1000);
   }, []);
+
+  const handleRowClick = (orderid) => {
+    navigate(`/order/${orderid}`);
+  };
   return (
-    <div className="max-w-6xl flex flex-col overflow-x-auto container">
+    <div className="max-w-6xl flex flex-col mx-auto min-h-[80vh] overflow-x-auto container">
       <h2 className="text-2xl font-semibold">Orderdetails</h2>
       <div className="mt-3">
         <table className="min-w-full">
@@ -63,7 +69,9 @@ const Orderdetails = () => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr key={order._id}>
+              <tr key={order._id}
+              onClick={() => handleRowClick(order._id)}
+              className="cursor-pointer hover:bg-gray-100 transition-all">
                 <td>
                   <img
                     src={order.orderItems[0].image}
@@ -72,7 +80,9 @@ const Orderdetails = () => {
                   />
                 </td>
                 <td className="px-4 py-2 text-sm">#{order._id}</td>
-                <td className="px-4 py-2 text-sm">{new Date(order.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-2 text-sm">
+                  {new Date(order.createdAt).toLocaleDateString()}
+                </td>
                 <td className="px-4 py-2 text-sm">
                   {order.shippingAddress
                     ? `${order.shippingAddress.city} , ${order.shippingAddress.country}`
@@ -80,7 +90,15 @@ const Orderdetails = () => {
                 </td>
                 <td className="px-4 py-2 text-sm">{order.orderItems.length}</td>
                 <td className="px-4 py-2 text-sm ">{order.totalPrice}</td>
-                <td className="px-4 py-2 text-sm ">{order.isPaid ? <span className="bg-green-300 p-1 rounded-md text-slate-500">Paid</span> :<span className="bg-green-300 p-1 rounded-md">Pending</span> }</td>
+                <td className="px-4 py-2 text-sm ">
+                  {order.isPaid ? (
+                    <span className="bg-green-300 p-1 rounded-md text-slate-500">
+                      Paid
+                    </span>
+                  ) : (
+                    <span className="bg-green-300 p-1 rounded-md">Pending</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
